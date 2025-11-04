@@ -4,6 +4,10 @@
  * Dispatcher for platform specific system/library calls.
  */
 
+#ifdef __ANDROID__
+#define addmntent(s,m) (1)
+#endif
+
 #ifndef CVMFS_UTIL_PLATFORM_H_
 #define CVMFS_UTIL_PLATFORM_H_
 
