@@ -24,6 +24,13 @@ typedef struct json_value JSON;
          reinterpret_cast<char *>(alloca(strlen((s)) + 1)), (s))
 #endif
 
+#ifdef __ANDROID__
+#include <cstring>
+#define strdupa(s)                    \
+  std::strcpy(/* NOLINT(runtime/printf) */ \
+         reinterpret_cast<char *>(alloca(strlen((s)) + 1)), (s))
+#endif
+
 using namespace std;  // NOLINT
 
 /**

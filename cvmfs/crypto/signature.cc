@@ -176,6 +176,12 @@ bool SignatureManager::LoadPrivateMasterKeyMem(const string &key) {
   return (private_master_key_ != NULL);
 }
 
+#ifdef __ANDROID__
+#include <cstring>
+#define strdupa(s)                    \
+  std::strcpy(/* NOLINT(runtime/printf) */ \
+         reinterpret_cast<char *>(alloca(strlen((s)) + 1)), (s))
+#endif
 
 /**
  * @param[in] file_pem File name of the PEM key file

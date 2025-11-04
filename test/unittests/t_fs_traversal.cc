@@ -19,6 +19,13 @@
 #include "util/platform.h"
 #include "util/posix.h"
 
+#ifdef __ANDROID__
+#include <cstring>
+#define strdupa(s)                    \
+  std::strcpy(/* NOLINT(runtime/printf) */ \
+         reinterpret_cast<char *>(alloca(strlen((s)) + 1)), (s))
+#endif
+
 class T_FsTraversal : public ::testing::Test {
  public:
   struct Checklist {

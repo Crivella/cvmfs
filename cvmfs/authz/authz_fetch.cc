@@ -123,6 +123,13 @@ void AuthzExternalFetcher::EnterFailState() {
   fail_state_ = true;
 }
 
+#ifdef __ANDROID__
+#include <cstring>
+#define strdupa(s)                    \
+  std::strcpy(/* NOLINT(runtime/printf) */ \
+         reinterpret_cast<char *>(alloca(strlen((s)) + 1)), (s))
+#endif
+
 
 /**
  * Uses execve to start progname_.  The started program has stdin and stdout
