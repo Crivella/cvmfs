@@ -19,8 +19,9 @@ esac
 ############################
 
 mkdir build && cd build
-CFLAGS="${CVMFS_BASE_C_FLAGS} -fPIC" ../configure \
+CFLAGS="${CVMFS_BASE_C_FLAGS} -fPIC -Wno-error=implicit-function-declaration" ../configure \
   --enable-static \
   --disable-shared \
   --disable-tests $DISABLE_ASM \
-  --prefix=${EXTERNALS_INSTALL_LOCATION}/crypto
+  --prefix=${EXTERNALS_INSTALL_LOCATION}/crypto \
+  --host=aarch64-unknown-linux-android
