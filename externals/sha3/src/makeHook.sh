@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "64compact" > arch
+
 if [ ! -f arch ]; then
   echo '#include <stdio.h>
     int main(){printf("%d", sizeof(long));return 0;}' | cc -x c -
@@ -31,7 +33,7 @@ rm -f SnP-interface.h
 ln -s $(cat arch)/SnP-interface.h SnP-interface.h
 
 make clean
-make CVMFS_CASE_C_FLAGS="$CVMFS_BASE_C_FLAGS" ARCH=$(cat arch) -j  ${CVMFS_BUILD_EXTERNAL_NJOBS}
+make CVMFS_CASE_C_FLAGS="$CVMFS_BASE_C_FLAGS" CFLAGS="${CFLAGS} --target=aarch64-linux-android24 -I../ -I./" ARCH=$(cat arch) -j  ${CVMFS_BUILD_EXTERNAL_NJOBS}
 strip -S libsha3.a
 
 cp -v *.h $EXTERNALS_INSTALL_LOCATION/include/
