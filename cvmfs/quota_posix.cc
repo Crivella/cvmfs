@@ -25,7 +25,7 @@
 #include <pthread.h>
 #include <signal.h>
 #include <stdint.h>
-#include <sys/dir.h>
+// #include <sys/dir.h>
 #include <sys/stat.h>
 #ifndef __APPLE__
 #include <sys/statfs.h>
