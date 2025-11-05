@@ -486,7 +486,7 @@ static void CloseLibrary() {
 
 static CvmfsExports *LoadLibrary(const bool debug_mode,
                                  LoaderExports *loader_exports) {
-  std::string local_lib_path = "./";
+  std::string local_lib_path = "/data/data/com.termux/files/usr/lib/";
   if (getenv("CVMFS_LIBRARY_PATH") != NULL) {
     local_lib_path = getenv("CVMFS_LIBRARY_PATH");
     if (!local_lib_path.empty() && (*local_lib_path.rbegin() != '/'))
