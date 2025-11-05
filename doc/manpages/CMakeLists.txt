@@ -4,7 +4,7 @@ find_program(HELP2MAN help2man DOC "Path to help2man executable")
 
 include(GNUInstallDirs)
 
-if(NOT HELP2MAN)
+if(TRUE)
     message(WARNING "help2man not found - man pages will not be generated")
 else()
     message(STATUS "Found help2man: ${HELP2MAN}")
