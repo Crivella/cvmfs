@@ -14,10 +14,12 @@ if ! python3 -V >/dev/null 2>&1; then
   FIX_PYTHON="PYTHON=python"
 fi
 
+patch -p1 < crosscompile.patch
+
 echo "make clean && make for libpacparser (omitting test execution)..."
 [ -d $static_result_dir ] && rm -fR $static_result_dir
 make $FIX_PYTHON -C src clean -j ${CVMFS_BUILD_EXTERNAL_NJOBS}
-make $FIX_PYTHON $FIX_COMP CVMFS_BASE_C_FLAGS="$CVMFS_BASE_C_FLAGS" -j1 -C src pacparser.o spidermonkey/libjs.a  # default target runs tests!
+make $FIX_PYTHON $FIX_COMP CVMFS_BASE_C_FLAGS="$CVMFS_BASE_C_FLAGS" CC="clang" -j1 -C src pacparser.o spidermonkey/libjs.a  # default target runs tests!
 echo "finished internal build of libpacparser"
 
 echo "creating static link library for libpacparser..."
