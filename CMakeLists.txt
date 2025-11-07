@@ -170,6 +170,9 @@ else (MACOSX) # --> Linux
     endif (IS_64_BIT)
   endif (DEBIAN OR ARCHLINUX)
 endif (MACOSX)
+set (CMAKE_MOUNT_INSTALL_BINDIR "${CMAKE_INSTALL_PREFIX}/sbin")
+set (CVMFS_LIBEXEC_DIR "lib/cvmfs")
+set (CMAKE_INSTALL_LIBDIR "lib")
 message ("Installing shared libraries to: ${CMAKE_INSTALL_LIBDIR}")
 
 #
